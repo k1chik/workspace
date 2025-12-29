@@ -1,0 +1,398 @@
+# ===========================================
+# Sensitive Data & Credentials
+# ===========================================
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+.envrc
+
+# API keys and credentials
+**/secrets/
+**/credentials/
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+id_rsa
+id_rsa.pub
+*.asc
+
+# Cloud provider credentials
+.aws/
+.azure/
+.gcloud/
+.config/gcloud/
+credentials.json
+service-account*.json
+*-credentials.json
+
+# Database credentials
+database.yml
+*.sql
+*.sqlite
+*.db
+
+# Config files with secrets
+config/secrets.yml
+config/master.key
+config/credentials.yml.enc
+
+# SSH and GPG
+.ssh/
+*.gpg
+
+# ===========================================
+# Operating System Files
+# ===========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# ===========================================
+# IDEs and Editors
+# ===========================================
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+tags
+[._]*.un~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+sftp-config.json
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+Package Control.cache/
+Package Control.ca-certs/
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+# ===========================================
+# Node.js / JavaScript / TypeScript
+# ===========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+.npm
+.eslintcache
+.node_repl_history
+*.tsbuildinfo
+.yarn-integrity
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.cache/
+dist/
+build/
+*.local
+
+# ===========================================
+# Python
+# ===========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+.pyre/
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
+.ipynb_checkpoints
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg
+MANIFEST
+htmlcov/
+.hypothesis/
+.ruff_cache/
+
+# ===========================================
+# Java / JVM
+# ===========================================
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
+target/
+.gradle/
+build/
+.gradletasknamecache
+gradle-app.setting
+.mtj.tmp/
+
+# ===========================================
+# Go
+# ===========================================
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+vendor/
+
+# ===========================================
+# Rust
+# ===========================================
+debug/
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# ===========================================
+# Ruby
+# ===========================================
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+.bundle/
+vendor/bundle
+.byebug_history
+.ruby-version
+.ruby-gemset
+
+# ===========================================
+# PHP
+# ===========================================
+/vendor/
+composer.phar
+composer.lock
+.phpunit.result.cache
+
+# ===========================================
+# C / C++
+# ===========================================
+*.o
+*.ko
+*.obj
+*.elf
+*.gch
+*.pch
+*.lib
+*.a
+*.la
+*.lo
+*.slo
+*.d
+*.su
+*.i*86
+*.x86_64
+*.hex
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# ===========================================
+# Build Outputs & Dependencies
+# ===========================================
+dist/
+build/
+out/
+bin/
+obj/
+*.min.js
+*.min.css
+
+# ===========================================
+# Logs & Temporary Files
+# ===========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+.grunt
+.lock-wscript
+
+# ===========================================
+# Backup Files
+# ===========================================
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+*.orig
+*.rej
+
+# ===========================================
+# Docker
+# ===========================================
+.dockerignore
+docker-compose.override.yml
+
+# ===========================================
+# Terraform
+# ===========================================
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# ===========================================
+# CI/CD & Testing
+# ===========================================
+coverage/
+.nyc_output/
+*.lcov
+.cache/
+*.cover
+
+# ===========================================
+# Misc
+# ===========================================
+*.tmp
+*.temp
+.scratch/
+scratch/
+TODO.md
+NOTES.md
