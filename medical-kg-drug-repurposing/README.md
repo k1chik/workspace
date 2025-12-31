@@ -66,70 +66,53 @@ This section provides the complete technical architecture of the solution.
 
 ```mermaid
 graph TB
-    subgraph "Data Sources"
-        A1[PubMed API<br/>Research Papers]
-        A2[PubChem API<br/>Drug Information]
-        A3[DisGeNET<br/>Gene-Disease Data]
+    subgraph DS[Data Sources]
+        A1[PubMed API]
+        A2[PubChem API]
     end
 
-    subgraph "Data Collection Layer"
-        B1[PubMed Scraper<br/>Python/Requests]
-        B2[PubChem Client<br/>Python/Requests]
-        B3[DisGeNET Loader<br/>CSV Parser]
+    subgraph DC[Data Collection]
+        B1[PubMed Scraper]
+        B2[PubChem Client]
     end
 
-    subgraph "Data Processing Layer"
-        C1[Raw Data Storage<br/>JSON/CSV Files]
-        C2[NLP Pipeline<br/>SciSpacy/BC5CDR]
-        C3[Entity Extraction<br/>Drugs, Diseases, Genes]
-        C4[Relationship Extraction<br/>Pattern Matching]
-        C5[Processed Data<br/>Structured CSV]
+    subgraph DP[Data Processing]
+        C1[Raw Data<br/>JSON/CSV]
+        C2[NLP Pipeline<br/>BC5CDR]
+        C3[Entity Extract]
+        C4[Relation Extract]
+        C5[Processed CSV]
     end
 
-    subgraph "Knowledge Graph Layer"
-        D1[Neo4j Graph DB]
-        D2[Graph Schema<br/>Nodes: Drug, Disease, Gene<br/>Edges: TREATS, CAUSES, etc.]
+    subgraph KG[Knowledge Graph]
+        D1[Neo4j DB]
+        D2[Schema Design]
         D3[Cypher Queries]
     end
 
-    subgraph "Machine Learning Layer"
-        E1[Feature Engineering<br/>Node Embeddings]
-        E2[Graph Neural Network<br/>GraphSAGE]
-        E3[Link Prediction Model<br/>PyTorch Geometric]
-        E4[Model Training<br/>M1 GPU/MPS]
-        E5[Trained Model<br/>Checkpoints]
+    subgraph ML[Machine Learning]
+        E1[Feature Eng]
+        E2[GraphSAGE GNN]
+        E3[Link Prediction]
+        E4[Model Training]
+        E5[Checkpoints]
     end
 
-    subgraph "Application Layer"
-        F1[Streamlit Web App]
-        F2[Interactive Visualizations<br/>NetworkX/Plotly]
-        F3[Prediction Explorer]
+    subgraph APP[Application]
+        F1[Streamlit App]
+        F2[Visualizations]
+        F3[Predictions]
         F4[Graph Browser]
     end
 
     A1 --> B1
     A2 --> B2
-    A3 --> B3
-
     B1 --> C1
     B2 --> C1
-    B3 --> C1
-
-    C1 --> C2
-    C2 --> C3
-    C3 --> C4
-    C4 --> C5
-
+    C1 --> C2 --> C3 --> C4 --> C5
     C5 --> D1
-    D1 --> D2
-    D2 --> D3
-
-    D1 --> E1
-    E1 --> E2
-    E2 --> E3
-    E3 --> E4
-    E4 --> E5
-
+    D1 --> D2 --> D3
+    D1 --> E1 --> E2 --> E3 --> E4 --> E5
     E5 --> F1
     D1 --> F1
     F1 --> F2
@@ -138,10 +121,123 @@ graph TB
 
     style A1 fill:#e1f5ff
     style A2 fill:#e1f5ff
-    style A3 fill:#e1f5ff
     style D1 fill:#ffe1e1
     style E3 fill:#e1ffe1
     style F1 fill:#fff4e1
+```
+
+### Detailed Data Flow Diagram
+
+This diagram shows the **exact files and scripts** with inputs and outputs:
+
+```mermaid
+graph LR
+    subgraph Week1[Week 1: Data Collection]
+        S1[collect_pubmed.py]
+        S2[collect_pubchem.py]
+        O1[pubmed_abstracts.json<br/>924 papers]
+        O2[pubchem_drugs.csv<br/>107 drugs]
+
+        S1 -->|writes| O1
+        S2 -->|writes| O2
+    end
+
+    subgraph Week2[Week 2: NLP Processing]
+        I1[pubmed_abstracts.json]
+        S3[extract_entities.py]
+        S4[extract_relationships.py]
+        S5[create_knowledge_base.py]
+        O3[entities.csv<br/>1,514 entities]
+        O4[relationships.csv<br/>666 relationships]
+        O5[knowledge_base.json]
+
+        I1 -->|reads| S3
+        S3 -->|writes| O3
+        I1 -->|reads| S4
+        O3 -->|reads| S4
+        S4 -->|writes| O4
+        O3 -->|reads| S5
+        O4 -->|reads| S5
+        S5 -->|writes| O5
+    end
+
+    subgraph Week3[Week 3: Graph Database]
+        I2[entities.csv]
+        I3[relationships.csv]
+        S6[load_to_neo4j.py]
+        O6[Neo4j Graph DB<br/>1,514 nodes<br/>663 edges]
+        Q1[cypher_queries.cypher<br/>60+ queries]
+
+        I2 -->|reads| S6
+        I3 -->|reads| S6
+        S6 -->|creates| O6
+        O6 -->|queries| Q1
+    end
+
+    subgraph Week4[Week 4: GNN Training]
+        I4[Neo4j DB]
+        S7[export_graph_data.py]
+        S8[prepare_training_data.py]
+        S9[train_gnn.py]
+        S10[evaluate_gnn.py]
+        S11[generate_predictions.py]
+        O7[graph_data.pt]
+        O8[train_data.pt<br/>val_data.pt<br/>test_data.pt]
+        O9[best_model.pt<br/>AUC: 0.8693]
+        O10[test_metrics.json<br/>training_history.json]
+        O11[novel_predictions.csv<br/>100 candidates]
+
+        I4 -->|exports| S7
+        S7 -->|writes| O7
+        O7 -->|reads| S8
+        S8 -->|writes| O8
+        O8 -->|reads| S9
+        S9 -->|writes| O9
+        O9 -->|reads| S10
+        O8 -->|reads| S10
+        S10 -->|writes| O10
+        O9 -->|reads| S11
+        O7 -->|reads| S11
+        S11 -->|writes| O11
+    end
+
+    subgraph Week5[Week 5: Dashboard]
+        I5[novel_predictions.csv]
+        S12[validate_predictions.py]
+        S13[streamlit app]
+        O12[validation_report.csv<br/>validation_summary.json]
+        O13[Interactive Dashboard<br/>4 pages]
+
+        I5 -->|reads| S12
+        S12 -->|writes| O12
+        O11 -->|reads| S13
+        O10 -->|reads| S13
+        O6 -->|reads| S13
+        O12 -->|reads| S13
+        S13 -->|serves| O13
+    end
+
+    O1 -.->|Week 1→2| I1
+    O3 -.->|Week 2→3| I2
+    O4 -.->|Week 2→3| I3
+    O6 -.->|Week 3→4| I4
+    O11 -.->|Week 4→5| I5
+
+    style S1 fill:#e3f2fd
+    style S2 fill:#e3f2fd
+    style S3 fill:#f3e5f5
+    style S4 fill:#f3e5f5
+    style S5 fill:#f3e5f5
+    style S6 fill:#e8f5e9
+    style S7 fill:#fff3e0
+    style S8 fill:#fff3e0
+    style S9 fill:#fff3e0
+    style S10 fill:#fff3e0
+    style S11 fill:#fff3e0
+    style S12 fill:#fce4ec
+    style S13 fill:#fce4ec
+    style O9 fill:#ffeb3b
+    style O13 fill:#ffeb3b
 ```
 
 ### Component Details
@@ -184,186 +280,190 @@ graph TB
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant Script as Collection Script
-    participant PubMed as PubMed API
-    participant PubChem as PubChem API
-    participant Storage as File System
+    participant U as User
+    participant S as Script
+    participant PM as PubMed API
+    participant PC as PubChem API
+    participant F as Files
 
-    User->>Script: Run collect_pubmed.py
-    Script->>PubMed: Search for papers<br/>(query: "drug repurposing")
-    PubMed-->>Script: Return PMIDs<br/>(paper identifiers)
+    U->>S: collect_pubmed.py
+    S->>PM: Search papers
+    PM-->>S: PMIDs list
 
-    loop For each batch of PMIDs
-        Script->>PubMed: Fetch abstracts<br/>(batch of 200)
-        Note over Script,PubMed: Rate limit: 0.4s delay
-        PubMed-->>Script: Return XML data
-        Script->>Script: Parse XML<br/>Extract title, abstract, metadata
+    loop Batch 200
+        S->>PM: Fetch abstracts
+        Note over S,PM: 0.4s delay
+        PM-->>S: XML data
+        S->>S: Parse XML
     end
 
-    Script->>Storage: Save to pubmed_abstracts.json
-    Storage-->>User: 924 papers collected
+    S->>F: pubmed_abstracts.json
+    F-->>U: 924 papers ✓
 
-    User->>Script: Run collect_pubchem.py
+    U->>S: collect_pubchem.py
 
-    loop For each drug in curated list
-        Script->>PubChem: Query drug by name
-        PubChem-->>Script: Return compound data<br/>(CID, formula, properties)
-        Script->>Script: Extract relevant fields
+    loop Each drug
+        S->>PC: Query by name
+        PC-->>S: Compound data
+        S->>S: Extract fields
     end
 
-    Script->>Storage: Save to pubchem_drugs.csv
-    Storage-->>User: 107 drugs collected
+    S->>F: pubchem_drugs.csv
+    F-->>U: 107 drugs ✓
 ```
 
 ### NLP Processing Workflow
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant Script as NLP Script
-    participant Data as Raw Data Files
-    participant NLP as SciSpacy/BC5CDR
-    participant Output as Processed Data
+    participant U as User
+    participant S as Script
+    participant D as Data
+    participant N as BC5CDR
+    participant O as Output
 
-    User->>Script: Run entity extraction
-    Script->>Data: Load pubmed_abstracts.json
-    Data-->>Script: 924 paper abstracts
+    U->>S: extract_entities.py
+    S->>D: Load abstracts
+    D-->>S: 924 papers
 
-    loop For each abstract
-        Script->>NLP: Process text
-        NLP->>NLP: Tokenization
-        NLP->>NLP: Named Entity Recognition
-        NLP-->>Script: Return entities<br/>(CHEMICAL, DISEASE)
+    loop Each abstract
+        S->>N: Process text
+        N->>N: Tokenize
+        N->>N: NER
+        N-->>S: Entities
 
-        Script->>Script: Extract drug-disease pairs
-        Script->>Script: Pattern matching<br/>("X treats Y", "X reduces Y")
+        S->>S: Extract pairs
+        S->>S: Pattern match
     end
 
-    Script->>Script: Deduplicate entities
-    Script->>Script: Normalize names
+    S->>S: Deduplicate
+    S->>S: Normalize
 
-    Script->>Output: Save entities.csv
-    Script->>Output: Save relationships.csv
-    Output-->>User: Structured knowledge base ready
+    S->>O: entities.csv
+    S->>O: relationships.csv
+    O-->>U: KB ready ✓
 ```
 
 ### Graph Construction Workflow
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant Script as Graph Builder
-    participant Data as Processed Data
-    participant Neo4j as Neo4j Database
+    participant U as User
+    participant S as Script
+    participant D as Data
+    participant N as Neo4j
 
-    User->>Script: Run graph construction
-    Script->>Data: Load entities.csv
-    Script->>Data: Load relationships.csv
+    U->>S: load_to_neo4j.py
+    S->>D: Load entities.csv
+    S->>D: Load relationships.csv
 
-    Script->>Neo4j: Connect to database
-    Neo4j-->>Script: Connection established
+    S->>N: Connect
+    N-->>S: Connected ✓
 
-    Script->>Neo4j: Create constraints<br/>(unique drug names, etc.)
+    S->>N: Create constraints
 
-    loop For each unique drug
-        Script->>Neo4j: CREATE (d:Drug {name, formula, ...})
+    loop 718 drugs
+        S->>N: CREATE Drug
     end
 
-    loop For each unique disease
-        Script->>Neo4j: CREATE (di:Disease {name, ...})
+    loop 796 diseases
+        S->>N: CREATE Disease
     end
 
-    loop For each relationship
-        Script->>Neo4j: MATCH (drug), (disease)<br/>CREATE (drug)-[:TREATS]->(disease)
+    loop 663 edges
+        S->>N: CREATE TREATS
     end
 
-    Script->>Neo4j: Create indexes
-    Neo4j-->>Script: Graph construction complete
+    S->>N: Create indexes
+    N-->>S: Complete ✓
 
-    Script->>Neo4j: MATCH (n) RETURN count(n)
-    Neo4j-->>User: 1,500+ nodes, 5,000+ relationships
+    S->>N: Count nodes
+    N-->>U: 1,514 nodes, 663 edges
 ```
 
 ### Model Training Workflow
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant Script as Training Script
-    participant Neo4j as Neo4j Database
-    participant PyG as PyTorch Geometric
-    participant Model as GNN Model
-    participant GPU as M1 GPU (MPS)
+    participant U as User
+    participant S as Script
+    participant N as Neo4j
+    participant P as PyG
+    participant M as GNN
+    participant G as M1 GPU
 
-    User->>Script: Run train_model.py
-    Script->>Neo4j: Query graph structure
-    Neo4j-->>Script: Nodes and edges
+    U->>S: train_gnn.py
+    S->>N: Export graph
+    N-->>S: Nodes + edges
 
-    Script->>Script: Prepare training data
-    Script->>Script: Split: train/val/test<br/>(70%/15%/15%)
-    Script->>Script: Generate negative samples<br/>(non-existent edges)
+    S->>S: Prepare data
+    S->>S: Split 70/15/15
+    S->>S: Neg sampling
 
-    Script->>PyG: Create Data object
-    PyG->>PyG: Initialize node features
+    S->>P: Data object
+    P->>P: Init features
 
-    Script->>Model: Initialize GraphSAGE<br/>(2 conv layers)
-    Script->>GPU: Move model to MPS device
+    S->>M: GraphSAGE
+    S->>G: Move to MPS
 
-    loop Training epochs (50-100)
-        Script->>Model: Forward pass
-        Model->>GPU: Compute on M1 GPU
-        GPU-->>Model: Predictions
+    loop 66 epochs
+        S->>M: Forward
+        M->>G: Compute
+        G-->>M: Predictions
 
-        Script->>Script: Compute loss<br/>(Binary Cross Entropy)
-        Script->>Model: Backward pass
-        Script->>Model: Update weights
+        S->>S: BCE loss
+        S->>M: Backward
+        S->>M: Update
 
-        alt Every 10 epochs
-            Script->>Script: Evaluate on validation set
-            Script->>User: Log metrics<br/>(AUC-ROC, Loss)
+        alt Every 10
+            S->>S: Validate
+            S->>U: AUC, Loss
         end
     end
 
-    Script->>Script: Evaluate on test set
-    Script-->>User: Final AUC-ROC: 0.80
+    S->>S: Test eval
+    S-->>U: AUC: 0.8693 ✓
 
-    Script->>Script: Save model checkpoint
-    Script-->>User: Model saved to models/trained/
+    S->>S: Save model
+    S-->>U: best_model.pt
 ```
 
 ### Prediction & Demo Workflow
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant App as Streamlit App
-    participant Model as Trained GNN
-    participant Neo4j as Neo4j Database
+    participant U as User
+    participant A as Streamlit
+    participant M as GNN
+    participant N as Neo4j
 
-    User->>App: Launch streamlit app
-    App->>Model: Load trained model
-    App->>Neo4j: Connect to graph DB
+    U->>A: streamlit run app
+    A->>M: Load model
+    A->>N: Connect DB
 
-    User->>App: Search for drug<br/>(e.g., "Aspirin")
-    App->>Neo4j: MATCH (d:Drug {name: "Aspirin"})
-    Neo4j-->>App: Drug node + existing relationships
+    U->>A: Browse predictions
+    A->>N: Load entities
+    N-->>A: Graph data
 
-    App->>Model: Predict new links<br/>(Aspirin → all diseases)
-    Model->>Model: Generate embeddings
-    Model->>Model: Compute edge scores
-    Model-->>App: Top 10 predictions<br/>with confidence scores
+    A->>M: Generate top 100
+    M->>M: Embeddings
+    M->>M: Score edges
+    M-->>A: Predictions + conf
 
-    App->>App: Render interactive graph
-    App->>App: Show prediction table
-    App-->>User: Display results
+    A->>A: Render charts
+    A->>A: Filter table
+    A-->>U: Dashboard
 
-    User->>App: Click on prediction
-    App->>Neo4j: Find explanation paths<br/>MATCH path = (drug)-[*1..3]-(disease)
-    Neo4j-->>App: Return shortest paths
+    U->>A: Filter novel
+    A->>A: Apply filters
+    A-->>U: 13 novel preds
 
-    App->>App: Visualize explanation<br/>(drug → gene → disease)
-    App-->>User: Show reasoning path
+    U->>A: Select prediction
+    A->>N: Find neighbors
+    N-->>A: Connected nodes
+
+    A->>A: Show graph viz
+    A-->>U: Explanation
 ```
 
 ---
@@ -386,30 +486,37 @@ sequenceDiagram
 
 ## 📊 Current Status
 
-**Phase 1: Data Collection** ✅ Complete
+**Week 1: Data Collection** ✅ Complete
 - 924 PubMed research papers (2020-2024)
 - 107 FDA-approved drugs with metadata
 - Data quality validated and ready
 
-**Phase 2: NLP Processing** 🔄 In Progress
-- Entity extraction pipeline
-- Relationship extraction
-- Knowledge base construction
+**Week 2: NLP Processing** ✅ Complete
+- Entity extraction: 1,514 entities (718 drugs, 796 diseases)
+- Relationship extraction: 666 drug-disease relationships
+- Knowledge base constructed and validated
 
-**Phase 3: Graph Construction** ⏳ Upcoming
-- Neo4j schema design
-- Data loading scripts
-- Graph validation
+**Week 3: Graph Construction** ✅ Complete
+- Neo4j database with 1,514 nodes, 663 edges
+- Graph schema implemented (Drug, Disease nodes; TREATS relationships)
+- 60+ Cypher queries for graph exploration
 
-**Phase 4: Model Training** ⏳ Upcoming
-- GraphSAGE implementation
-- Training pipeline
-- Model evaluation
+**Week 4: Model Training** ✅ Complete
+- GraphSAGE GNN with 7,073 parameters
+- Test AUC: **0.8693** (exceeds target of 0.75 by 16%)
+- Precision@10: **1.0000** (perfect top predictions!)
+- 100 novel drug repurposing predictions generated
 
-**Phase 5: Demo Application** ⏳ Upcoming
-- Streamlit web interface
-- Interactive visualizations
-- Prediction explorer
+**Week 5: Dashboard & Validation** ✅ Complete
+- Literature validation: 13 novel, 5 emerging, 2 confirmed predictions
+- Interactive Streamlit dashboard with 4 pages
+- 15+ interactive visualizations
+- Production-ready web application
+
+**Week 6: Portfolio Materials** 🔄 In Progress
+- Technical documentation
+- Demo preparation
+- Final polish
 
 ---
 
