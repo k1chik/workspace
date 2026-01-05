@@ -16,7 +16,6 @@
 This project is designed to:
 - **Learn** modern ML/AI techniques (Graph Neural Networks, NLP, Knowledge Graphs)
 - **Demonstrate** end-to-end software engineering skills
-- **Showcase** technical capabilities for internship/job applications
 - **Explore** biomedical informatics as an interesting problem domain
 
 **NOT intended for:**
@@ -133,6 +132,33 @@ Confirmed (5+ papers) ████ 2 predictions (10%)
 
 This section provides the complete technical architecture of the solution.
 
+### Recent Improvements
+
+**Data Quality Enhancements:**
+- ✅ **PubChem Integration**: Drug validation against authoritative chemical database
+  - 71 validated drugs with molecular properties (formula, SMILES, IUPAC names)
+  - 643 unvalidated entities flagged for review
+  - Chemical property enrichment for downstream analysis
+
+**Code Maintainability:**
+- ✅ **Refactored Relationship Extraction**: Replaced regex with spaCy Matcher
+  - 10 readable, maintainable linguistic patterns
+  - Automatic lemmatization (treat/treats/treating/treated)
+  - Production-ready pattern matching that scales
+
+**Enhanced Visualization:**
+- ✅ **Dashboard Chemical Information Display**
+  - PubChem CID links for validated drugs
+  - Molecular formula and weight display
+  - SMILES structure visualization
+  - Validation status badges
+
+**Comprehensive Query Library:**
+- ✅ **438 Lines of Cypher Queries**: 10 categories of pre-written queries
+  - Basic exploration, drug repurposing insights, network analysis
+  - Statistical analysis, validation checks, disease-specific queries
+  - Copy-paste ready for Neo4j Browser
+
 ### High-Level Data Flow
 
 ```
@@ -224,13 +250,23 @@ extract_entities.py
          • 718 Drugs (CHEMICAL) + 796 Diseases (DISEASE)
          • Frequency counts, paper references
 
+normalize_entities.py
+    ├─◀ data/processed/entities.csv
+    ├─◀ data/raw/pubchem_drugs.csv
+    └─▶ data/processed/entities_normalized.csv
+         • Drug validation against PubChem database
+         • 71 validated drugs with chemical properties
+         • Molecular formula, SMILES, IUPAC names
+         • 643 unvalidated drugs flagged
+
 extract_relationships.py
     ├─◀ data/raw/pubmed_abstracts.json
     ├─◀ data/processed/entities.csv
     └─▶ data/processed/relationships.csv
-         • 666 drug-disease relationships
+         • 663 drug-disease relationships
          • Confidence scores, evidence types
-         • Pattern matching + co-occurrence
+         • spaCy Matcher-based pattern extraction (10 patterns)
+         • Co-occurrence analysis
 
 create_knowledge_base.py
     ├─◀ data/processed/entities.csv
@@ -244,19 +280,24 @@ create_knowledge_base.py
 PHASE 3: Knowledge Graph Construction
 ======================================
 load_to_neo4j.py
-    ├─◀ data/processed/entities.csv
+    ├─◀ data/processed/entities_normalized.csv
     ├─◀ data/processed/relationships.csv
     └─▶ Neo4j Graph Database
-         • 1,514 nodes (:Drug, :Disease)
+         • 1,510 nodes (:Drug, :Disease)
          • 663 :TREATS relationships
+         • PubChem chemical properties on validated drugs
          • Batch loading, constraints, indexes
-         • 2.54 seconds load time
+         • ~3 seconds load time
 
 cypher_queries.cypher
-    └─▶ 60+ pre-written Cypher queries
-         • Graph exploration
-         • Network analysis
+    └─▶ 438 lines of pre-written Cypher queries (10 categories)
+         • Basic exploration & search
          • Drug repurposing insights
+         • Network analysis & path finding
+         • Statistical analysis
+         • Validation & quality checks
+         • Disease-specific queries (COVID-19, cancer, neurological)
+         • Visualization queries
 
 ────────────────────────────────────────────────────────────
 
@@ -338,15 +379,22 @@ streamlit run app/main.py
 #### 2. Data Processing Layer
 - **NLP Pipeline**: BC5CDR model for biomedical entity recognition
 - **Entity Extraction**: Identifies CHEMICAL (drugs) and DISEASE entities
-- **Relationship Extraction**: Pattern-based extraction of drug-disease associations
+- **Drug Validation**: PubChem integration for chemical property enrichment
+  - 71 validated drugs with molecular formula, SMILES, IUPAC names
+  - 643 unvalidated drugs flagged for review
+- **Relationship Extraction**: spaCy Matcher-based pattern extraction
+  - 10 linguistic patterns for high-precision extraction
+  - Co-occurrence analysis for additional relationship discovery
 - **Data Storage**: JSON for raw data, CSV for processed relationships
 
 #### 3. Knowledge Graph Layer
 - **Database**: Neo4j graph database
 - **Schema**:
-  - Nodes: Drug, Disease, Gene, Protein
-  - Relationships: TREATS, CAUSES, TARGETS, ASSOCIATED_WITH
+  - Nodes: Drug (with PubChem properties), Disease
+  - Drug properties: name, frequency, pubchem_cid, molecular_formula, molecular_weight, canonical_smiles, iupac_name, validated flag
+  - Relationships: TREATS (with confidence scores, evidence text, supporting PMIDs)
 - **Query Language**: Cypher for graph traversal and pattern matching
+- **Query Library**: 438 lines of pre-written queries across 10 categories
 
 #### 4. Machine Learning Layer
 - **Model**: GraphSAGE (Graph Sample and Aggregate)
@@ -358,7 +406,12 @@ streamlit run app/main.py
 #### 5. Application Layer
 - **Web Framework**: Streamlit
 - **Visualizations**: NetworkX for graph layout, Plotly for interactive charts
-- **Features**: Prediction explorer, graph browser, entity search
+- **Features**:
+  - Prediction explorer with validation status
+  - Graph browser with chemical information display
+  - Entity search with PubChem integration
+  - Clickable PubChem CID links for validated drugs
+  - Molecular formula, SMILES, and IUPAC name display
 
 ---
 
@@ -526,7 +579,8 @@ novel_predictions.csv (100 candidates) ✓
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | **Data Collection** | Python `requests`, REST APIs | PubMed, PubChem data fetching |
-| **NLP** | SciSpacy, BC5CDR, Transformers | Biomedical entity extraction |
+| **NLP** | SciSpacy, BC5CDR, spaCy Matcher | Biomedical entity extraction & pattern matching |
+| **Data Validation** | PubChem API | Drug validation & chemical property enrichment |
 | **Data Storage** | JSON, CSV, Pandas | Raw and processed data |
 | **Graph Database** | Neo4j 5.x, Cypher | Knowledge graph storage & queries |
 | **ML Framework** | PyTorch 2.9+, PyTorch Geometric | Graph Neural Networks |
@@ -625,19 +679,29 @@ python test_setup.py
 medical-kg-drug-repurposing/
 ├── data/
 │   ├── raw/                    # Raw data from APIs
-│   │   ├── pubmed_abstracts.json    (924 papers)
-│   │   └── pubchem_drugs.csv        (107 drugs)
+│   │   ├── pubmed_abstracts.json        (924 papers)
+│   │   └── pubchem_drugs.csv            (107 drugs)
 │   ├── processed/              # Cleaned, structured data
-│   │   ├── entities.csv
-│   │   └── relationships.csv
+│   │   ├── entities.csv                 (1,514 raw entities)
+│   │   ├── entities_normalized.csv      (1,510 validated entities)
+│   │   ├── normalization_report.json    (validation statistics)
+│   │   ├── relationships.csv            (663 relationships)
+│   │   └── knowledge_base.json
 │   └── samples/                # Small samples for testing
 │
 ├── scripts/
 │   ├── data_collection/        # Data fetching scripts
 │   │   ├── collect_pubmed.py
 │   │   └── collect_pubchem.py
-│   ├── preprocessing/          # NLP and data processing
-│   ├── training/               # Model training scripts
+│   ├── nlp/                    # NLP and entity processing
+│   │   ├── extract_entities.py
+│   │   ├── normalize_entities.py        (PubChem validation)
+│   │   ├── extract_relationships.py     (spaCy Matcher patterns)
+│   │   └── create_knowledge_base.py
+│   ├── graph/                  # Graph construction
+│   │   ├── load_to_neo4j.py            (Neo4j loader)
+│   │   └── cypher_queries.cypher       (438 lines, 10 categories)
+│   ├── models/                 # Model training scripts
 │   └── evaluation/             # Model evaluation
 │
 ├── notebooks/
@@ -648,8 +712,14 @@ medical-kg-drug-repurposing/
 ├── app/
 │   ├── main.py                 # Streamlit app entry point
 │   ├── components/             # UI components
-│   ├── pages/                  # Multi-page app
+│   ├── pages/                  # Multi-page app (with PubChem display)
 │   └── utils/                  # Helper functions
+│
+├── docs/                       # Documentation
+│   ├── DEPLOYMENT_GUIDE.md
+│   ├── ARCHITECTURE_DIAGRAMS.md
+│   ├── FILE_DEPENDENCIES.md
+│   └── PUBCHEM_INTEGRATION.md  (Drug validation documentation)
 │
 ├── models/
 │   ├── checkpoints/            # Training checkpoints
@@ -732,6 +802,7 @@ Comprehensive documentation is available in the `docs/` directory:
 - **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)** - Complete deployment instructions for local and cloud environments
 - **[Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md)** - Visual system architecture templates and diagrams
 - **[File Dependencies](docs/FILE_DEPENDENCIES.md)** - Detailed data flow and file dependencies reference
+- **[PubChem Integration](docs/PUBCHEM_INTEGRATION.md)** - Drug validation and chemical property enrichment documentation
 
 ---
 
