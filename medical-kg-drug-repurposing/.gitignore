@@ -1,0 +1,70 @@
+# Personal Reference Files (NOT for GitHub)
+GUIDE.md
+RUNBOOK.md
+CLOUD_STRATEGY.md
+CS_INTERNSHIP_VALUE.md
+SCHEDULE.md
+STORYTELLING_GUIDE.md
+PLAN.md
+Quickstart.md
+Medical-Drug-Repurposing.md
+claude.local.md
+*.local.md
+
+# Personal notes and tracking files (entire folder)
+.personal-notes/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# Data (don't commit large files)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/samples/
+
+# Models
+models/checkpoints/*
+models/trained/*.pt
+models/trained/*.pth
+!models/.gitkeep
+
+# Neo4j
+neo4j/
+*.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.scratch/

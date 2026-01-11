@@ -1,0 +1,92 @@
+{
+  "total_validated": 20,
+  "confirmed": 2,
+  "emerging": 5,
+  "novel": 13,
+  "avg_confidence": 0.9999658465385437,
+  "avg_pubmed_count": 1.15,
+  "max_pubmed_count": 7,
+  "validation_by_status": {
+    "Confirmed": {
+      "count": 2,
+      "avg_confidence": 0.9999875426292419,
+      "avg_pubmed_count": 6.0,
+      "top_predictions": [
+        {
+          "drug": "fusidic acid",
+          "disease": "allergic",
+          "confidence": 0.9999885559082031
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "allergic disease",
+          "confidence": 0.9999865293502808
+        }
+      ]
+    },
+    "Emerging": {
+      "count": 5,
+      "avg_confidence": 0.9999711871147156,
+      "avg_pubmed_count": 2.2,
+      "top_predictions": [
+        {
+          "drug": "fusidic acid",
+          "disease": "metastatic cancer",
+          "confidence": 0.9999927282333374
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "aggressive tumors",
+          "confidence": 0.9999901056289673
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "allergic inflammation",
+          "confidence": 0.9999895095825195
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "neurological disease",
+          "confidence": 0.9999563694000244
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "breast and lung cancers",
+          "confidence": 0.9999465942382812
+        }
+      ]
+    },
+    "Novel": {
+      "count": 13,
+      "avg_confidence": 0.9999619722366333,
+      "avg_pubmed_count": 0.0,
+      "top_predictions": [
+        {
+          "drug": "fusidic acid",
+          "disease": "carbapenem-resistant a. baumannii",
+          "confidence": 0.9999994039535522
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "primary liver cancer",
+          "confidence": 0.9999951124191284
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "pulmonary diseases",
+          "confidence": 0.9999924898147583
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "chronic pain",
+          "confidence": 0.9999895095825195
+        },
+        {
+          "drug": "fusidic acid",
+          "disease": "schwannoma",
+          "confidence": 0.9999853372573853
+        }
+      ]
+    }
+  }
+}

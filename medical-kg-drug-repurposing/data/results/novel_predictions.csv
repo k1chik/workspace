@@ -1,0 +1,101 @@
+rank,drug,drug_id,disease,disease_id,confidence,drug_frequency,disease_frequency,drug_num_papers,disease_num_papers
+1,fusidic acid,DRUG_0720,carbapenem-resistant a. baumannii,DISEASE_0719,0.9999994039535522,1,1,1,1
+2,fusidic acid,DRUG_0720,primary liver cancer,DISEASE_0724,0.9999951124191284,1,1,1,1
+3,fusidic acid,DRUG_0720,metastatic cancer,DISEASE_0721,0.9999927282333374,1,1,1,1
+4,fusidic acid,DRUG_0720,pulmonary diseases,DISEASE_0723,0.9999924898147583,1,1,1,1
+5,fusidic acid,DRUG_0720,aggressive tumors,DISEASE_0722,0.9999901056289673,1,1,1,1
+6,fusidic acid,DRUG_0720,chronic pain,DISEASE_0728,0.9999895095825195,1,1,1,1
+7,fusidic acid,DRUG_0720,allergic inflammation,DISEASE_0727,0.9999895095825195,1,1,1,1
+8,fusidic acid,DRUG_0720,allergic,DISEASE_0725,0.9999885559082031,1,1,1,1
+9,fusidic acid,DRUG_0720,allergic disease,DISEASE_0726,0.9999865293502808,1,1,1,1
+10,fusidic acid,DRUG_0720,schwannoma,DISEASE_0754,0.9999853372573853,1,1,1,1
+11,fusidic acid,DRUG_0720,post-stroke,DISEASE_0789,0.9999711513519287,1,1,1,1
+12,fusidic acid,DRUG_0720,sbdd,DISEASE_0748,0.9999583959579468,1,1,1,1
+13,fusidic acid,DRUG_0720,xai,DISEASE_1190,0.9999574422836304,1,1,1,1
+14,fusidic acid,DRUG_0720,neurological disease,DISEASE_0734,0.9999563694000244,1,1,1,1
+15,fusidic acid,DRUG_0720,neuromuscular disease,DISEASE_0733,0.9999547004699707,1,1,1,1
+16,fusidic acid,DRUG_0720,erectile dysfunction,DISEASE_0729,0.9999490976333618,1,1,1,1
+17,fusidic acid,DRUG_0720,breast and lung cancers,DISEASE_0742,0.9999465942382812,1,1,1,1
+18,fusidic acid,DRUG_0720,meningiomas,DISEASE_0755,0.9999387264251709,1,1,1,1
+19,fusidic acid,DRUG_0720,meningioma,DISEASE_0752,0.9999344348907471,1,1,1,1
+20,fusidic acid,DRUG_0720,hmpv infection,DISEASE_0741,0.9999288320541382,1,1,1,1
+21,fusidic acid,DRUG_0720,aeruginosa,DISEASE_0750,0.9999284744262695,1,1,1,1
+22,fusidic acid,DRUG_0720,pituitary neuroendocrine tumor,DISEASE_0753,0.999925971031189,1,1,1,1
+23,fusidic acid,DRUG_0720,fatty liver,DISEASE_0763,0.9999237060546875,1,1,1,1
+24,fusidic acid,DRUG_0720,chemotherapy-,DISEASE_0751,0.9999217987060547,1,1,1,1
+25,fusidic acid,DRUG_0720,breast and lung cancer,DISEASE_0743,0.9999185800552368,1,1,1,1
+26,fusidic acid,DRUG_0720,cancer,DISEASE_0001,0.9999146461486816,1,493,1,184
+27,fusidic acid,DRUG_0720,infectious tropical disease,DISEASE_0744,0.9999141693115234,1,1,1,1
+28,fusidic acid,DRUG_0720,late-onset,DISEASE_0759,0.9999133348464966,1,1,1,1
+29,fusidic acid,DRUG_0720,acute respiratory syndrome coronavirus 2 genome.,DISEASE_0767,0.9999133348464966,1,1,1,1
+30,fusidic acid,DRUG_0720,neurofibromatosis,DISEASE_0756,0.9999099969863892,1,1,1,1
+31,fusidic acid,DRUG_0720,amyloid senile plaques,DISEASE_0774,0.9999079704284668,1,1,1,1
+32,fusidic acid,DRUG_0720,schwannomatosis,DISEASE_0757,0.9999072551727295,1,1,1,1
+33,fusidic acid,DRUG_0720,diamond-blackfan anemia,DISEASE_0772,0.9999059438705444,1,1,1,1
+34,fusidic acid,DRUG_0720,re-emerging infectious diseases,DISEASE_0768,0.9999057054519653,1,1,1,1
+35,fusidic acid,DRUG_0720,neurodegenerative and viral diseases,DISEASE_0771,0.9999047517776489,1,1,1,1
+36,fusidic acid,DRUG_0720,liver cancer,DISEASE_0762,0.9999011754989624,1,1,1,1
+37,fusidic acid,DRUG_0720,wilson disease,DISEASE_0761,0.9998990297317505,1,1,1,1
+38,fusidic acid,DRUG_0720,life-threatening infectious diseases,DISEASE_0769,0.9998949766159058,1,1,1,1
+39,fusidic acid,DRUG_0720,s. aureus,DISEASE_1205,0.9998941421508789,1,1,1,1
+40,fusidic acid,DRUG_0720,neuroimmunological diseases,DISEASE_0786,0.9998922348022461,1,1,1,1
+41,fusidic acid,DRUG_0720,scaly,DISEASE_0802,0.9998903274536133,1,1,1,1
+42,fusidic acid,DRUG_0720,multifactorial disorder,DISEASE_0825,0.9998900890350342,1,1,1,1
+43,fusidic acid,DRUG_0720,pdr,DISEASE_0813,0.9998865127563477,1,1,1,1
+44,fusidic acid,DRUG_0720,disease cancer,DISEASE_0746,0.9998806715011597,1,1,1,1
+45,fusidic acid,DRUG_0720,alzheimer's disease,DISEASE_0004,0.9998806715011597,1,78,1,45
+46,fusidic acid,DRUG_0720,albicans,DISEASE_1152,0.9998730421066284,1,1,1,1
+47,fusidic acid,DRUG_0720,polydispersity,DISEASE_1151,0.9998730421066284,1,1,1,1
+48,fusidic acid,DRUG_0720,immune-mediated diseases,DISEASE_0803,0.9998718500137329,1,1,1,1
+49,fusidic acid,DRUG_0720,human immunodeficiency virus (hiv) infection,DISEASE_0747,0.9998716115951538,1,1,1,1
+50,fusidic acid,DRUG_0720,myeloid cell leukemia,DISEASE_0832,0.9998695850372314,1,1,1,1
+51,fusidic acid,DRUG_0720,cancers,DISEASE_0005,0.9998645782470703,1,69,1,47
+52,fusidic acid,DRUG_0720,"viral infections like hiv, hepatitis b",DISEASE_0812,0.9998621940612793,1,1,1,1
+53,fusidic acid,DRUG_0720,pandemic,DISEASE_0002,0.9998606443405151,1,114,1,99
+54,fusidic acid,DRUG_0720,dtd-gnn,DISEASE_0820,0.9998602867126465,1,1,1,1
+55,fusidic acid,DRUG_0720,infectious diseases,DISEASE_0807,0.9998598098754883,1,1,1,1
+56,fusidic acid,DRUG_0720,brain gliomas,DISEASE_0809,0.9998571872711182,1,1,1,1
+57,fusidic acid,DRUG_0720,death,DISEASE_0010,0.9998552799224854,1,36,1,34
+58,fusidic acid,DRUG_0720,drviaspcn,DISEASE_0815,0.9998546838760376,1,1,1,1
+59,fusidic acid,DRUG_0720,cancer morbidity,DISEASE_0878,0.9998538494110107,1,1,1,1
+60,fusidic acid,DRUG_0720,breast cancer,DISEASE_0003,0.9998505115509033,1,104,1,28
+61,fusidic acid,DRUG_0720,hiv mutations,DISEASE_0983,0.9998494386672974,1,1,1,1
+62,fusidic acid,DRUG_0720,tuberculosis,DISEASE_0022,0.9998490810394287,1,16,1,7
+63,fusidic acid,DRUG_0720,tumor,DISEASE_0007,0.9998477697372437,1,53,1,37
+64,fusidic acid,DRUG_0720,hereditary muscular disease,DISEASE_0975,0.9998455047607422,1,1,1,1
+65,fusidic acid,DRUG_0720,gastrointestinal stromal tumors,DISEASE_0846,0.9998441934585571,1,1,1,1
+66,fusidic acid,DRUG_0720,"colorectal, breast, oral and anogenitial.",DISEASE_0890,0.9998401403427124,1,1,1,1
+67,fusidic acid,DRUG_0720,coronavirus disease,DISEASE_0006,0.9998400211334229,1,54,1,54
+68,fusidic acid,DRUG_0720,ic/bps disease,DISEASE_0876,0.9998390674591064,1,1,1,1
+69,fusidic acid,DRUG_0720,glioblastoma,DISEASE_0018,0.9998385906219482,1,20,1,12
+70,fusidic acid,DRUG_0720,weight loss,DISEASE_1001,0.9998364448547363,1,1,1,1
+71,fusidic acid,DRUG_0720,demyelination,DISEASE_1300,0.9998352527618408,1,1,1,1
+72,fusidic acid,DRUG_0720,coronavirus disease 2019 pneumonia,DISEASE_1299,0.9998352527618408,1,1,1,1
+73,fusidic acid,DRUG_0720,tumors,DISEASE_0013,0.9998350143432617,1,32,1,25
+74,fusidic acid,DRUG_0720,mwas+,DISEASE_0850,0.9998325109481812,1,1,1,1
+75,fusidic acid,DRUG_0720,relapsed tumors,DISEASE_0922,0.9998325109481812,1,1,1,1
+76,fusidic acid,DRUG_0720,endotoxemia,DISEASE_0930,0.9998295307159424,1,1,1,1
+77,fusidic acid,DRUG_0720,hepatitis,DISEASE_0760,0.9998273849487305,1,1,1,1
+78,fusidic acid,DRUG_0720,ic/bps,DISEASE_0875,0.9998270869255066,1,1,1,1
+79,fusidic acid,DRUG_0720,cardiovascular disorders,DISEASE_0758,0.9998270869255066,1,1,1,1
+80,fusidic acid,DRUG_0720,parkinson's disease,DISEASE_0011,0.9998257756233215,1,34,1,16
+81,fusidic acid,DRUG_0720,infections,DISEASE_0012,0.9998257756233215,1,33,1,32
+82,fusidic acid,DRUG_0720,hsv-1,DISEASE_1496,0.9998231530189514,1,1,1,1
+83,fusidic acid,DRUG_0720,non-lethal,DISEASE_0880,0.9998204112052917,1,1,1,1
+84,fusidic acid,DRUG_0720,melanoma,DISEASE_0020,0.9998193383216858,1,18,1,9
+85,fusidic acid,DRUG_0720,malaria,DISEASE_0017,0.9998156428337097,1,20,1,13
+86,fusidic acid,DRUG_0720,inflammation,DISEASE_0014,0.9998156428337097,1,27,1,20
+87,fusidic acid,DRUG_0720,deaths,DISEASE_0015,0.9998151659965515,1,25,1,25
+88,fusidic acid,DRUG_0720,decline in cognitive function and memory loss,DISEASE_1379,0.9998146891593933,1,1,1,1
+89,fusidic acid,DRUG_0720,cocaine addiction,DISEASE_0862,0.9998132586479187,1,1,1,1
+90,fusidic acid,DRUG_0720,buruli ulcer,DISEASE_0893,0.9998130202293396,1,1,1,1
+91,fusidic acid,DRUG_0720,prostatic hyperplasia,DISEASE_0797,0.9998121857643127,1,1,1,1
+92,fusidic acid,DRUG_0720,tbi,DISEASE_0024,0.9998112320899963,1,16,1,4
+93,fusidic acid,DRUG_0720,sars-cov-2 infection,DISEASE_0023,0.9998112320899963,1,16,1,15
+94,fusidic acid,DRUG_0720,reduced amd,DISEASE_0775,0.9998112320899963,1,1,1,1
+95,fusidic acid,DRUG_0720,shwachman-diamond syndrome,DISEASE_0773,0.9998112320899963,1,1,1,1
+96,fusidic acid,DRUG_0720,parkinson's,DISEASE_0881,0.9998112320899963,1,1,1,1
+97,fusidic acid,DRUG_0720,aggressive and common malignant primary brain tumor,DISEASE_0870,0.999808132648468,1,1,1,1
+98,fusidic acid,DRUG_0720,infectious diseases,DISEASE_0021,0.9998076558113098,1,17,1,16
+99,fusidic acid,DRUG_0720,opportunistic fungal infections,DISEASE_0779,0.9998076558113098,1,1,1,1
+100,fusidic acid,DRUG_0720,neurodegenerative diseases,DISEASE_0019,0.9998038411140442,1,18,1,13

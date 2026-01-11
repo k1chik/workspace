@@ -30,7 +30,7 @@ The biomedical domain provides a rich, real-world dataset to learn GNN and knowl
 
 ## 🎯 Project Overview
 
-Drug development traditionally takes 10+ years and costs $2.6 billion. This project explores how **Graph Neural Networks** and **biomedical knowledge graphs** could be used to identify new uses for existing FDA-approved drugs.
+Drug development traditionally takes years and costs billion's. This project explores how **Graph Neural Networks** and **biomedical knowledge graphs** could be used to identify new uses for existing FDA-approved drugs.
 
 This is a **proof-of-concept implementation** to learn and demonstrate:
 1. How to extract structured information from unstructured text using NLP
@@ -42,18 +42,46 @@ This is a **proof-of-concept implementation** to learn and demonstrate:
 
 **Technical Skills:**
 - REST API integration (PubMed, PubChem)
-- Biomedical NLP using SciSpacy and transformers
+- Biomedical NLP using SciSpacy
 - Graph database design and Cypher queries
 - PyTorch and PyTorch Geometric for GNNs
 - Full ML pipeline (data → model → evaluation → deployment)
 - Interactive web applications with Streamlit
 
-**Software Engineering:**
+**Software Engineering Skills:**
 - Clean, modular code architecture
 - Data pipeline development
-- Version control with Git
+- Version control
 - Documentation and testing
 - End-to-end feature ownership
+
+---
+
+## 🧩 What Did This Project Actually Do?
+
+Imagine you have a huge pile of 924 medical research papers sitting on your desk. Each paper mentions different drugs and diseases. Some papers say "Drug X helps with Disease Y." Others might mention both Drug X and Disease Z in the same sentence, but don't explicitly say they're related.
+
+Now imagine reading through all those papers, making notes about every drug and disease you find, and drawing connections between them on a giant whiteboard. That would take forever, right?
+
+That's exactly what this project does—automatically.
+
+**Here's the simple version:**
+
+1. **Read the papers**: A computer program downloaded 924 medical research papers from PubMed (a free medical database)
+
+2. **Find the important stuff**: Special software trained on medical text looked through every paper and circled all the drug names (like "aspirin") and disease names (like "headache")
+
+3. **Connect the dots**: The program found sentences like "aspirin treats headaches" and drew arrows connecting aspirin to headache
+
+4. **Organize everything**: All these drugs, diseases, and connections got stored in a special kind of database called a "graph" (think of it like a map where cities are drugs/diseases and roads are the connections)
+
+5. **Teach the AI**: A neural network studied this map and learned patterns—like "drugs that treat similar diseases probably share something in common"
+
+6. **Make predictions**: The AI then guessed which drugs might treat diseases they've never been used for before. It found 100 new possibilities.
+
+The coolest part? When we checked the AI's top predictions against actual medical research, some of them were real treatments that doctors already know about. The AI figured them out just by reading papers. And 13 predictions were completely new—no one has studied them yet.
+
+**Real example**: The AI predicted that Fusidic Acid (an antibiotic) might help with a dangerous antibiotic-resistant bacteria called A. baumannii. No published research exists on this combination yet. That's a genuinely new hypothesis a researcher could investigate.
 
 ---
 
