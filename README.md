@@ -1,11 +1,20 @@
-# Workspace
+# Project Workspace
 
-A development workspace for building and experimenting with various projects.
+This repository is my workspace for building projects, learning new technologies, and experimenting with different tools and frameworks.
 
-## Getting Started
+## Projects
 
-This repository serves as a workspace for development projects and experiments.
+### [Medical Knowledge Graph - Drug Repurposing](./medical-kg-drug-repurposing)
+A Graph Neural Network system that analyzes medical research papers to discover new uses for existing drugs. Built with PyTorch Geometric, Neo4j, and biomedical NLP.
 
-## Structure
+**Key Features:**
+- Processes 924 PubMed research papers using specialized NLP
+- Builds a knowledge graph with 1,514 biomedical entities in Neo4j
+- Trains a GraphSAGE GNN achieving 0.87 AUC on link prediction
+- Interactive Streamlit dashboard for exploring predictions
 
-Projects and code will be organized within this workspace as they are developed.
+**Tech Stack:** Python, PyTorch, Neo4j, SciSpacy, Streamlit
+
+---
+
+More projects coming soon.
