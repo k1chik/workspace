@@ -163,26 +163,26 @@ This section provides the complete technical architecture of the solution.
 ### Recent Improvements
 
 **Data Quality Enhancements:**
-- ✅ **PubChem Integration**: Drug validation against authoritative chemical database
+-  **PubChem Integration**: Drug validation against authoritative chemical database
   - 71 validated drugs with molecular properties (formula, SMILES, IUPAC names)
   - 643 unvalidated entities flagged for review
   - Chemical property enrichment for downstream analysis
 
 **Code Maintainability:**
-- ✅ **Refactored Relationship Extraction**: Replaced regex with spaCy Matcher
+-  **Refactored Relationship Extraction**: Replaced regex with spaCy Matcher
   - 10 readable, maintainable linguistic patterns
   - Automatic lemmatization (treat/treats/treating/treated)
   - Production-ready pattern matching that scales
 
 **Enhanced Visualization:**
-- ✅ **Dashboard Chemical Information Display**
+-  **Dashboard Chemical Information Display**
   - PubChem CID links for validated drugs
   - Molecular formula and weight display
   - SMILES structure visualization
   - Validation status badges
 
 **Comprehensive Query Library:**
-- ✅ **438 Lines of Cypher Queries**: 10 categories of pre-written queries
+-  **438 Lines of Cypher Queries**: 10 categories of pre-written queries
   - Basic exploration, drug repurposing insights, network analysis
   - Statistical analysis, validation checks, disease-specific queries
   - Copy-paste ready for Neo4j Browser
@@ -619,43 +619,7 @@ novel_predictions.csv (100 candidates) ✓
 
 ---
 
-## 📊 Project Status
-
-**Data Collection** ✅ Complete
-- 924 PubMed research papers (2020-2024)
-- 107 FDA-approved drugs with metadata
-- Data quality validated and ready
-
-**NLP Processing & Entity Extraction** ✅ Complete
-- Entity extraction: 1,514 entities (718 drugs, 796 diseases)
-- Relationship extraction: 666 drug-disease relationships
-- Knowledge base constructed and validated
-
-**Knowledge Graph Construction** ✅ Complete
-- Neo4j database with 1,514 nodes, 663 edges
-- Graph schema implemented (Drug, Disease nodes; TREATS relationships)
-- 60+ Cypher queries for graph exploration
-
-**Machine Learning & Link Prediction** ✅ Complete
-- GraphSAGE GNN with 7,073 parameters
-- Test AUC: **0.8693** (exceeds target of 0.75 by 16%)
-- Precision@10: **1.0000** (perfect top predictions!)
-- 100 novel drug repurposing predictions generated
-
-**Validation & Interactive Dashboard** ✅ Complete
-- Literature validation: 13 novel, 5 emerging, 2 confirmed predictions
-- Interactive Streamlit dashboard with 4 pages
-- 15+ interactive visualizations
-- Production-ready web application
-
-**Documentation & Polish** ✅ Complete
-- Technical documentation ✅
-- Architecture diagrams ✅
-- Deployment guide ✅
-
 ---
-
-## 🚀 Quick Start
 
 > **📖 For detailed deployment instructions**, see the [Deployment Guide](docs/DEPLOYMENT_GUIDE.md)
 
@@ -797,33 +761,10 @@ This project helped me learn:
 
 ---
 
-## 🎓 Skills Demonstrated
-
-### Technical
-- ✅ REST API integration and data collection
-- ✅ Natural Language Processing (NLP) for entity extraction
-- ✅ Graph database design and Cypher queries
-- ✅ Graph Neural Networks (PyTorch Geometric)
-- ✅ ML pipeline development (data → model → evaluation)
-- ✅ Web application development (Streamlit)
-- ✅ GPU-accelerated training (M1 MPS)
-
-### Software Engineering
-- ✅ Clean, modular code architecture
-- ✅ Version control (Git)
-- ✅ Documentation and testing
-- ✅ Virtual environment management
-- ✅ End-to-end feature ownership
-
-### Problem Solving
-- ✅ Working with unfamiliar domains (biomedical informatics)
-- ✅ Handling large, unstructured datasets
-- ✅ Building explainable AI systems
-- ✅ Balancing scope vs. timeline (pragmatic approach)
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 Comprehensive documentation is available in the `docs/` directory:
 
@@ -857,17 +798,6 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 - [SciSpacy](https://allenai.github.io/scispacy/) for biomedical NLP
 - [Streamlit](https://streamlit.io/) for rapid web app development
 
-**Inspiration**:
-- Research on computational drug repurposing
-- Graph ML community and tutorials
-
----
-
-## 📧 Contact
-
-**Karan Kukadia** - [kkukadia@iu.edu](mailto:kkukadia@iu.edu)
-
-Project Link: [https://github.com/yourusername/medical-kg-drug-repurposing](https://github.com/yourusername/medical-kg-drug-repurposing)
 
 ---
 
@@ -878,11 +808,3 @@ This project is for **educational and portfolio purposes only**. It is not inten
 - Clinical decision support
 - Drug discovery or pharmaceutical research
 - Any production healthcare applications
-
-The techniques demonstrated here (Graph Neural Networks, NLP, Knowledge Graphs) are broadly applicable to many domains beyond healthcare, including recommendation systems, fraud detection, social network analysis, and more.
-
-**Always consult qualified healthcare professionals for medical advice.**
-
----
-
-**Status**: ✅ Complete | **Type**: Learning & Portfolio Project
